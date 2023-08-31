@@ -1,5 +1,5 @@
 package = "kong-plugin-mm-rate-limiting"
-version = "0.0.6"
+version = "0.0.6-1"
 
 local pluginName = package:match("^kong%-plugin%-(.+)$")  -- "mm-rate-limiting"
 
