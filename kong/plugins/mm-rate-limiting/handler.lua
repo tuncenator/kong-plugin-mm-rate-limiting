@@ -1,4 +1,3 @@
-local BasePlugin = require "kong.plugins.base_plugin"
 local ipmatcher = require "resty.ipmatcher"
 local lrucache = require "resty.lrucache"
 local timestamp = require "kong.tools.timestamp"
@@ -6,8 +5,6 @@ local timestamp = require "kong.tools.timestamp"
 local EXPIRATION = require "kong.plugins.mm-rate-limiting.expiration"
 local datadog = require "kong.plugins.mm-rate-limiting.datadog"
 local logger = nil
-
-local RateLimitingHandler = BasePlugin:extend()
 
 local null    = ngx.null
 local re_find = ngx.re.find
@@ -17,8 +14,10 @@ local fmt     = string.format
 
 local EMPTY_UUID = "00000000-0000-0000-0000-000000000000"
 
-RateLimitingHandler.VERSION  = "1.0.0"
-RateLimitingHandler.PRIORITY = 10
+local RateLimitingHandler = {
+    VERSION = "1.0.0",
+    PRIORITY = 10,
+}
 
 local function get_ip(conf)
   local ip
@@ -155,7 +154,6 @@ local function get_service_and_route_ids(conf)
 end
 
 function RateLimitingHandler:access(conf)
-  RateLimitingHandler.super.access(self)
   logger = datadog(conf.datadog)
   local ip = get_ip(conf)
   local user_agent, err = get_user_agent()

@@ -1,3 +1,6 @@
+Since the original repo is no longer maintained, I did some migration to make it work with Kong Gateway 3.1.1
+
+
 [![Build Status](https://travis-ci.com/ManoManoTech/kong-plugin-mm-rate-limiting.svg?branch=main)](https://travis-ci.com/ManoManoTech/kong-plugin-mm-rate-limiting)
 # A Kong plugin to allow, deny and rate limit the queries by ip, header or user agent
 
